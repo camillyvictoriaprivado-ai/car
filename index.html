@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Synthwave Login</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+
+      overflow: hidden;
+
+      height: 100vh;
+
+      background: black;
+
+      font-family: 'Press Start 2P', cursive;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      position: relative;
+    }
+
+    /* 🌌 BACKGROUND */
+    .bg {
+
+      position: absolute;
+      inset: 0;
+
+      background:
+        linear-gradient(
+          to bottom,
+          #12002b 0%,
+          #1a0036 40%,
+          #050510 100%
+        );
+
+      overflow: hidden;
+    }
+
+    /* ⭐ ESTRELAS */
+    .stars {
+
+      position: absolute;
+      inset: 0;
+
+      background-image:
+        radial-gradient(white 1px, transparent 1px);
+
+      background-size: 3px 3px;
+
+      opacity: 0.2;
+
+      animation: stars 150s linear infinite;
+    }
+
+    @keyframes stars {
+
+      from {
+        transform: translateY(0);
+      }
+
+      to {
+        transform: translateY(1000px);
+      }
+    }
+
+    /* 🌞 SOL */
+    .sun {
+
+      position: absolute;
+
+      top: 8%;
+      left: 50%;
+
+      transform: translateX(-50%);
+
+      width: 320px;
+      height: 320px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          #ff8cff 0%,
+          #ff00c8 70%
+        );
+
+      box-shadow:
+        0 0 60px #ff00c8,
+        0 0 120px #ff00c855;
+    }
+
+    /* 🌇 CIDADE */
+    .city {
+
+      position: absolute;
+
+      bottom: 38%;
+
+      width: 100%;
+      height: 180px;
+
+      background:
+        linear-gradient(to top, #0a0018, transparent);
+
+    }
+
+    .building {
+
+      position: absolute;
+
+      bottom: 0;
+
+      background: #140022;
+
+      border-top:
+        2px solid #ff00c8;
+
+      box-shadow:
+        0 0 15px #ff00c855;
+    }
+
+    /* 🏙️ prédios */
+    .b1 { left: 5%; width: 80px; height: 140px; }
+    .b2 { left: 15%; width: 120px; height: 220px; }
+    .b3 { left: 30%; width: 70px; height: 170px; }
+    .b4 { left: 42%; width: 100px; height: 260px; }
+    .b5 { left: 58%; width: 90px; height: 200px; }
+    .b6 { left: 72%; width: 140px; height: 240px; }
+    .b7 { left: 88%; width: 60px; height: 150px; }
+
+    /* 🛣️ GRID */
+    .grid {
+
+      position: absolute;
+
+      bottom: -20%;
+
+      width: 100%;
+      height: 80%;
+
+      background-image:
+        linear-gradient(#00ffff66 2px, transparent 2px),
+        linear-gradient(90deg, #00ffff66 2px, transparent 2px);
+
+      background-size: 90px 90px;
+
+      transform:
+        perspective(400px)
+        rotateX(78deg);
+
+      animation: roadMove 1.2s linear infinite;
+    }
+
+    @keyframes roadMove {
+
+      from {
+        background-position-y: 0;
+      }
+
+      to {
+        background-position-y: 90px;
+      }
+    }
+
+    /* 🛣️ ESTRADA */
+    .road {
+
+      position: absolute;
+
+      bottom: 0;
+      left: 50%;
+
+      transform: translateX(-50%);
+
+      width: 30%;
+      height: 55%;
+
+      background:
+        linear-gradient(
+          to bottom,
+          transparent,
+          #050510
+        );
+
+      clip-path:
+        polygon(
+          45% 0%,
+          55% 0%,
+          100% 100%,
+          0% 100%
+        );
+
+      z-index: 2;
+    }
+
+    /* 🚗 CARRO */
+    .car {
+
+      position: absolute;
+
+      bottom: 8%;
+      left: 50%;
+
+      transform: translateX(-50%);
+
+      width: 180px;
+      height: 90px;
+
+      z-index: 10;
+
+      animation: carFloat 2s ease-in-out infinite;
+    }
+
+    /* corpo */
+    .car-body {
+
+      position: absolute;
+
+      bottom: 0;
+
+      width: 100%;
+      height: 60px;
+
+      background:
+        linear-gradient(
+          to right,
+          #00d9ff,
+          #00ffff
+        );
+
+      border-radius:
+        20px 20px 10px 10px;
+
+      box-shadow:
+        0 0 20px #00ffff,
+        0 0 40px #00ffff88;
+    }
+
+    /* vidro */
+    .car-top {
+
+      position: absolute;
+
+      top: 0;
+      left: 30px;
+
+      width: 120px;
+      height: 40px;
+
+      background: rgba(0,0,0,0.8);
+
+      border:
+        2px solid #00ffff;
+
+      border-radius: 10px;
+
+      box-shadow:
+        inset 0 0 10px #00ffff;
+    }
+
+    /* luzes */
+    .light-left,
+    .light-right {
+
+      position: absolute;
+
+      bottom: 10px;
+
+      width: 20px;
+      height: 8px;
+
+      background: #ff00c8;
+
+      box-shadow:
+        0 0 10px #ff00c8,
+        0 0 20px #ff00c8;
+    }
+
+    .light-left {
+      left: 10px;
+    }
+
+    .light-right {
+      right: 10px;
+    }
+
+    @keyframes carFloat {
+
+      0% {
+        transform:
+          translateX(-50%)
+          translateY(0px);
+      }
+
+      50% {
+        transform:
+          translateX(-50%)
+          translateY(-4px);
+      }
+
+      100% {
+        transform:
+          translateX(-50%)
+          translateY(0px);
+      }
+    }
+
+    /* 📺 LOGIN */
+    .login {
+
+      position: relative;
+
+      z-index: 50;
+
+      width: 420px;
+
+      padding: 40px;
+
+      background:
+        rgba(0,0,0,0.5);
+
+      border:
+        2px solid #00ffff;
+
+      backdrop-filter: blur(5px);
+
+      box-shadow:
+        0 0 20px #00ffff,
+        inset 0 0 20px #00ffff22;
+
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    h1 {
+
+      text-align: center;
+
+      color: #ff00c8;
+
+      font-size: 20px;
+
+      margin-bottom: 15px;
+
+      animation: glitch 1s infinite;
+    }
+
+    @keyframes glitch {
+
+      0% {
+        text-shadow:
+          2px 0 #00ffff,
+          -2px 0 #ff00c8;
+      }
+
+      50% {
+        text-shadow:
+          -3px 0 #00ffff,
+          3px 0 #ff00c8;
+      }
+
+      100% {
+        text-shadow:
+          2px 0 #00ffff,
+          -2px 0 #ff00c8;
+      }
+    }
+
+    input {
+
+      padding: 14px;
+
+      background: #050510;
+
+      border:
+        2px solid #00ffff;
+
+      color: #00ffff;
+
+      font-family: inherit;
+
+      font-size: 10px;
+
+      outline: none;
+    }
+
+    input::placeholder {
+
+      color: #00ffff88;
+    }
+
+    input:focus {
+
+      box-shadow:
+        0 0 10px #00ffff;
+    }
+
+    button {
+
+      padding: 14px;
+
+      background: transparent;
+
+      border:
+        2px solid #ff00c8;
+
+      color: #ff00c8;
+
+      font-family: inherit;
+
+      cursor: pointer;
+
+      transition: 0.2s;
+    }
+
+    button:hover {
+
+      background: #ff00c8;
+
+      color: black;
+
+      box-shadow:
+        0 0 15px #ff00c8,
+        0 0 30px #ff00c888;
+    }
+
+    .status {
+
+      text-align: center;
+
+      color: #00ffff;
+
+      font-size: 10px;
+
+      min-height: 20px;
+    }
+
+    /* 📺 CRT */
+    .scanlines {
+
+      position: absolute;
+      inset: 0;
+
+      background:
+        repeating-linear-gradient(
+          to bottom,
+          transparent 0px,
+          transparent 2px,
+          rgba(0,0,0,0.25) 3px
+        );
+
+      opacity: 0.3;
+
+      pointer-events: none;
+
+      z-index: 999;
+    }
+
+    .flicker {
+
+      position: absolute;
+      inset: 0;
+
+      background:
+        rgba(255,255,255,0.02);
+
+      animation: flicker 0.15s infinite;
+
+      pointer-events: none;
+
+      z-index: 998;
+    }
+
+    @keyframes flicker {
+
+      0% {
+        opacity: 0.02;
+      }
+
+      50% {
+        opacity: 0.04;
+      }
+
+      100% {
+        opacity: 0.02;
+      }
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <div class="bg">
+
+    <div class="stars"></div>
+
+    <div class="sun"></div>
+
+    <div class="city">
+
+      <div class="building b1"></div>
+      <div class="building b2"></div>
+      <div class="building b3"></div>
+      <div class="building b4"></div>
+      <div class="building b5"></div>
+      <div class="building b6"></div>
+      <div class="building b7"></div>
+
+    </div>
+
+    <div class="grid"></div>
+
+    <div class="road"></div>
+
+    <!-- 🚗 CARRO -->
+    <div class="car">
+
+      <div class="car-top"></div>
+
+      <div class="car-body"></div>
+
+      <div class="light-left"></div>
+      <div class="light-right"></div>
+
+    </div>
+
+  </div>
+
+  <!-- 📺 LOGIN -->
+  <div class="login">
+
+    <h1>ENTRE NO SISTEMA</h1>
+
+    <input type="text" placeholder="USER ID">
+
+    <input type="password" placeholder="PASSWORD">
+
+    <button onclick="login()">
+      ▶ ACESSAR
+    </button>
+
+    <div class="status" id="status">
+      SYSTEM READY
+    </div>
+
+  </div>
+
+  <!-- CRT -->
+  <div class="scanlines"></div>
+  <div class="flicker"></div>
+
+  <script>
+
+    function login() {
+
+      const status =
+        document.getElementById("status");
+
+      status.innerHTML =
+        "AUTHENTICATING...";
+
+      setTimeout(() => {
+
+        status.innerHTML =
+          "ACCESS GRANTED";
+
+        document.body.style.filter =
+          "brightness(2)";
+
+      }, 1200);
+
+      setTimeout(() => {
+
+        window.location.href =
+          "home.html";
+
+      }, 2200);
+    }
+
+  </script>
+
+</body>
+
+</html>
